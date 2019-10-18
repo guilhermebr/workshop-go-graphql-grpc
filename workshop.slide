@@ -11,9 +11,10 @@ Mudano
 
 * Agenda
 
-- Microservices
+- Architecture
+- Front End
 - Go
-- GraphQL
+- GraphQL Gateway
 - gRPC
 - Deploy
 
@@ -25,54 +26,13 @@ This presentation and the code we are going to use is available at:
 [[https://github.com/guilhermebr/workshop-go-graphql-grpc]]
 [[https://go-talks.appspot.com/github.com/guilhermebr/workshop-go-graphql-grpc/workshop.slide]]
 
-* Microservices
+* Architecture
 
-* Monolithics vs Microservices
+.image img/arch.png 500 400
 
-.image img/microservices-01.png
+* Front End
 
-* Monolithic
-
-- Simplicity
-- Monolithic code base
-- Monolithic database
-- Tighly coupled architecture
-
-* Microservices
-
-'…the	microservice	architectural	style	is	an
-approach	to	developing	a	single	application	as	a
-suite	of	small	services,	each	running	in	its	own
-process	and	communicating	with	lightweight
-mechanisms,	often	an	HTTP	resource	API.'
-- *Martin*	*Fowler*
-
-* Microservices
-
-- 12Factor Manifesto
-- Cloud Native App
-- Ephemeral File System
-- Resilient
-- Preferably Stateless
-- Horizontal Scalable
-- Single business logic
-- Hide your data
-- Design for failure
-- DevOps Culture
-
-* Microservices benefits
-
-- Easier to scale
-- Clear ownership
-- Easier to maintain and evolve
-- New releases take minutes
-- Increased agility
-- Faster innovation
-
-* Microservice performance gotchas
-
-- Slow data serialization
-- Network contention
+* GraphQL
 
 * Go
 
@@ -98,17 +58,21 @@ mechanisms,	often	an	HTTP	resource	API.'
 - Dropbox
 - Twitter
 - Google
-- ...
+- Globo.com
 
-* Go at Globo.com
+* Microservices benefits
 
-- G1
-- Cartola
-- GloboID
-- Cassino
-- HuskCI
-- Tsuru :)
-- ...
+- Easier to scale
+- Clear ownership
+- Easier to maintain and evolve
+- New releases take minutes
+- Increased agility
+- Faster innovation
+
+* Microservice performance gotchas
+
+- Slow data serialization
+- Network contention
 
 * Microservices with Go
 
@@ -120,18 +84,6 @@ using anything other than Go"
 
 .image img/gopher_glasses.png
 
-* Convinced of Go?
-
-* Gopher
-
-.image img/gopher_rm.png 400 600
-.caption _Gopher_ by [[@ashleymcnamara][Ashley McNamara]]
-
-* Gopher
-
-.image img/gopher-gotham.png
-.caption _Gopher_ by [[@ashleymcnamara][Ashley McNamara]]
-
 * Installing Go
 
 [[https://golang.org/doc/install]]
@@ -141,7 +93,7 @@ using anything other than Go"
  $ git clone git@github.com:mtmendonca/teamder-api
  $ git checkout -f v1
 
-* GraphQL
+* GraphQL Gateway
 
 * Installing GraphQL lib
 
@@ -150,7 +102,6 @@ using anything other than Go"
  $ git checkout -f v2
 
 * gRPC
-
 
 * History
 
@@ -228,3 +179,16 @@ define RPCs
  $ git checkout -f v3
 
 * Deploy with Kubernetes
+
+* Convinced of Go?
+
+* Gopher
+
+.image img/gopher_rm.png 400 600
+.caption _Gopher_ by [[@ashleymcnamara][Ashley McNamara]]
+
+* Gopher
+
+.image img/gopher-gotham.png
+.caption _Gopher_ by [[@ashleymcnamara][Ashley McNamara]]
+
