@@ -1,0 +1,214 @@
+Workshop Go, GraphQL and gRPC
+Devfest Cerrado 2019
+
+Guilherme Rezende
+Globo.com
+@gbrezende
+
+Marcelo Mendonça
+Mudano
+@mtmendonca
+
+* Agenda
+
+- Microservices
+- Go
+- GraphQL
+- gRPC
+- Deploy
+
+* Presentation
+.html img/style.html
+
+This presentation and the code we are going to use is available at:
+
+[[https://github.com/guilhermebr/workshop-go-graphql-grpc]]
+[[https://go-talks.appspot.com/github.com/guilhermebr/workshop-go-graphql-grpc/workshop.slide]]
+
+* Microservices
+
+* Monolithics vs Microservices
+
+.image img/microservices-01.png
+
+* Monolithic
+
+- Simplicity
+- Monolithic code base
+- Monolithic database
+- Tighly coupled architecture
+
+* Microservices
+
+'…the	microservice	architectural	style	is	an
+approach	to	developing	a	single	application	as	a
+suite	of	small	services,	each	running	in	its	own
+process	and	communicating	with	lightweight
+mechanisms,	often	an	HTTP	resource	API.'
+- *Martin*	*Fowler*
+
+* Microservices
+
+- 12Factor Manifesto
+- Cloud Native App
+- Ephemeral File System
+- Resilient
+- Preferably Stateless
+- Horizontal Scalable
+- Single business logic
+- Hide your data
+- Design for failure
+- DevOps Culture
+
+* Microservices benefits
+
+- Easier to scale
+- Clear ownership
+- Easier to maintain and evolve
+- New releases take minutes
+- Increased agility
+- Faster innovation
+
+* Microservice performance gotchas
+
+- Slow data serialization
+- Network contention
+
+* Go
+
+* Why Go?
+
+.image img/gopher.jpg
+
+* Why Go?
+
+.play why.go
+
+* Go: the language of the cloud.
+
+- Small footprint runtime
+- Modern and efficient networking
+- Open source
+
+* Who uses Go?
+
+- Kubernetes
+- Docker
+- Uber
+- Dropbox
+- Twitter
+- Google
+- ...
+
+* Go at Globo.com
+
+- G1
+- Cartola
+- GloboID
+- Cassino
+- HuskCI
+- Tsuru :)
+- ...
+
+* Microservices with Go
+
+"[...] if you're building a server, I can't Imagine
+using anything other than Go"
+- Ryan Dahl
+
+- *Ryan* *Dahl* is a software engineer and *original* *developer* of *Node.js* *javascript* *runtime*
+
+.image img/gopher_glasses.png
+
+* Convinced of Go?
+
+* Gopher
+
+.image img/gopher_rm.png 400 600
+.caption _Gopher_ by [[@ashleymcnamara][Ashley McNamara]]
+
+* Gopher
+
+.image img/gopher-gotham.png
+.caption _Gopher_ by [[@ashleymcnamara][Ashley McNamara]]
+
+* Installing Go
+
+[[https://golang.org/doc/install]]
+
+* GraphQL
+
+* gRPC
+
+
+* History
+
+.image img/grpc.png
+
+- gRPC is the next generation of Stubby
+- Google has been running a microservices architecture internally for over a decade.
+- Google’s internal stack relies heavily on utilising RPCs (or Remote Procedure Calls). Every application is built using many RPC services that provide different tiers of functionality.
+- gRPC is the open sourcing and continued development of Stubby.
+
+* Protocol Buffers
+
+- another open source project by Google
+- language-neutral, platform-neutral, extensible mechanism for quickly serializing structured data in a small binary packet.
+- By default, gRPC used Protocol Buffers v3 for data serialisation.
+
+* Protocol Buffers
+
+IDL (Interface definition language)
+- Describe once and generate interfaces for any language.
+
+Data Model
+- Structure of the request and response.
+
+Wire Format
+- Binary format for network transmission.
+
+* Proto Buffer Language
+
+ syntax = “proto3”;
+
+ message Person {
+     string name = 1;
+     int32 id = 2;
+     string email = 3;
+
+     enum PhoneType {
+       MOBILE = 0;
+       HOME = 1;
+       WORK = 2;
+     }
+
+     message PhoneNumber {
+       string number = 1;
+       PhoneType type = 2;
+     }
+
+     repeated PhoneNumber phone = 4;
+ }
+
+* Service Definition
+
+define RPCs
+
+ service RouteGuide {
+   rpc GetFeature(Point) returns (Feature);
+   rpc RouteChat(stream RouteNote) returns (stream RouteNote);
+ }
+
+* HTTP/2
+
+- Multiplexing
+- Bidirectional Streaming
+- HTTPS
+
+* Setup
+
+    $ go get -u google.golang.org/grpc
+    $ go get -u github.com/golang/protobuf/proto
+    $ go get -u github.com/golang/protobuf/protoc-gen-go
+
+* Deploy with Kubernetes
