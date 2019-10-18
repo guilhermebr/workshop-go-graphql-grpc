@@ -136,7 +136,18 @@ using anything other than Go"
 
 [[https://golang.org/doc/install]]
 
+* Hands On
+
+ $ git clone git@github.com:mtmendonca/teamder-api
+ $ git checkout -f v1
+
 * GraphQL
+
+* Installing GraphQL lib
+
+* Hands On
+
+ $ git checkout -f v2
 
 * gRPC
 
@@ -210,5 +221,10 @@ define RPCs
     $ go get -u google.golang.org/grpc
     $ go get -u github.com/golang/protobuf/proto
     $ go get -u github.com/golang/protobuf/protoc-gen-go
+
+
+* Hands On
+
+ $ git checkout -f v3
 
 * Deploy with Kubernetes
