@@ -19,11 +19,13 @@ Mudano
 - Deploy
 
 * Presentation
+
 .html img/style.html
 
 This presentation and the code we are going to use is available at:
 
 [[https://github.com/guilhermebr/workshop-go-graphql-grpc]]
+
 [[https://go-talks.appspot.com/github.com/guilhermebr/workshop-go-graphql-grpc/workshop.slide]]
 
 * Architecture
@@ -31,6 +33,7 @@ This presentation and the code we are going to use is available at:
 .image img/arch.jpg 500 500
 
 * Front End
+
  $ git clone https://github.com/mtmendonca/teamder-web
 - Typescript
 - React with hooks
@@ -38,13 +41,14 @@ This presentation and the code we are going to use is available at:
 - Material-ui
 
 * GraphQL
+
 - GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data.
 - Ask for what you need, get exactly that
 .image img/gql.png 450 450
 
 * Front End
-.image img/frontend.png 600 678
 
+.image img/frontend.png 600 678
 
 * Go
 
@@ -102,14 +106,50 @@ using anything other than Go"
 
 * Hands On
 
+* Check
+
  $ git clone git@github.com:mtmendonca/teamder-api
  $ git checkout -f v1
 
 * GraphQL Gateway
 
-* Installing GraphQL lib
+* Packages
+
+* Example
+
+  package main
+
+  import (
+          graphql "github.com/graph-gophers/graphql-go"
+          "github.com/graph-gophers/graphql-go/relay"
+  )
+
+  type query struct{}
+
+  func (_ *query) Hello() string { return "Hello, world!" }
+
+  func main() {
+          s := `
+                  schema {
+                          query: Query
+                  }
+                  type Query {
+                          hello: String!
+                  }
+          `
+          schema := graphql.MustParseSchema(s, &query{})
+          http.Handle("/query", &relay.Handler{Schema: schema})
+          log.Fatal(http.ListenAndServe(":8080", nil))
+  }
+
+* Installing
+
+ $ go get github.com/graph-gophers/graphql-go
+ $ go get github.com/graph-gophers/graphql-go/relay
 
 * Hands On
+
+* Check
 
  $ git checkout -f v2
 
@@ -119,10 +159,15 @@ using anything other than Go"
 
 .image img/grpc.png
 
-- gRPC is the next generation of Stubby
-- Google has been running a microservices architecture internally for over a decade.
-- Google’s internal stack relies heavily on utilising RPCs (or Remote Procedure Calls). Every application is built using many RPC services that provide different tiers of functionality.
-- gRPC is the open sourcing and continued development of Stubby.
+- gRPC stands for gRPC Remote Procedure Calls
+- Google’s internal stack relies heavily on utilising RPCs
+- gRPC is the open sourcing and continued development of Stubby
+
+* HTTP/2
+
+- Multiplexing
+- Bidirectional Streaming
+- HTTPS
 
 * Protocol Buffers
 
@@ -173,24 +218,46 @@ define RPCs
    rpc RouteChat(stream RouteNote) returns (stream RouteNote);
  }
 
-* HTTP/2
+* Setup
 
-- Multiplexing
-- Bidirectional Streaming
-- HTTPS
+    $ go get -u github.com/golang/protobuf/proto
+    $ go get -u github.com/golang/protobuf/protoc-gen-go
+
+* Hands On
+
+* Check
+
+ $ git checkout -f v3
 
 * Setup
 
     $ go get -u google.golang.org/grpc
-    $ go get -u github.com/golang/protobuf/proto
-    $ go get -u github.com/golang/protobuf/protoc-gen-go
 
+* Check
+
+ $ git checkout -f v4
+
+* Kubernetes
+
+* Orchestration
+
+- *Scheduling*: Where should my containers run?
+- *Lifecycle* and *health*: Keep my containers running despite failures
+- *Discovery*: Where are my containers now?
+- *Monitoring*: What's happening with my containers?
+- *Auth{n,z}*: Control who can do things to my containers
+- *Scalling*: Making jobs bigger or smaller
+
+* Kubernetes
+
+- Greek for "Helmsman"
+- Based on Google Borg - Cluster Manager
+- Google, RedHat, Microsoft, CoreOS, ...
+- Open Source
+- Written in Go ❤
+- Member of the Cloud Native Computing Foundation
 
 * Hands On
-
- $ git checkout -f v3
-
-* Deploy with Kubernetes
 
 * Convinced of Go?
 
