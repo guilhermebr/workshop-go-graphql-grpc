@@ -28,11 +28,23 @@ This presentation and the code we are going to use is available at:
 
 * Architecture
 
-.image img/arch.png 500 400
+.image img/arch.jpg 500 500
 
 * Front End
+ $ git clone https://github.com/mtmendonca/teamder-web
+- Typescript
+- React with hooks
+- Apollo Client
+- Material-ui
 
 * GraphQL
+- GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data.
+- Ask for what you need, get exactly that
+.image img/gql.png 450 450
+
+* Front End
+.image img/frontend.png 600 678
+
 
 * Go
 
